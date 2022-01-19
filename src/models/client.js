@@ -1,5 +1,5 @@
 class Client {
-  constructor(name, bio, age) {
+  constructor(name, age) {
     this.age = age;
     this.name = name;
     this.bio = "";
@@ -7,3 +7,5 @@ class Client {
     this.photos = [];
   }
 }
+
+module.exports = Client

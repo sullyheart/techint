@@ -1,5 +1,5 @@
 class Translator {
-  constructor(name, bio) {
+  constructor(name, email) {
     this.name = name;
     this.email = email;
     this.bio = "";
@@ -15,37 +15,12 @@ class Translator {
   likePhoto(photo) {
     photo.likedBy.push(this);
   }
+}
+module.exports = Translator
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  /*get profile() {
+/*get profile() {
     return `
 # ${this.name} (${this.email})
  BIO: ${this.bio}

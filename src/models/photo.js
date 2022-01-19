@@ -1,3 +1,4 @@
+
 class Photo {
   constructor(filename) {
     this.filename = filename;
