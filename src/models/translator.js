@@ -1,4 +1,42 @@
+const mongoose = require('mongoose')
+const autopopulate = require('mongoose-autopopulate')
+
+const translatorSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  age: {
+    type: Number,
+    required: true,
+  },
+  bio: String,
+  photos: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Photo',
+      autopopulate: true,
+    },
+  ],
+})
+
 class Translator {
+  async addPhoto(photo) {
+    this.photos.push(photo)
+    await this.save()
+  }
+
+}
+
+translatorSchema.loadClass(Translator)
+translatorSchema.plugin(autopopulate)
+
+module.exports = mongoose.model('Translator', translatorSchema)
+
+
+
+/*class Translator {
   constructor(name, email) {
     this.name = name;
     this.email = email;
@@ -6,7 +44,7 @@ class Translator {
     this.comment = [];
     this.photos = [];
   }
-  greet(translator) {
+  greet() {
     console.log();
   }
   addPhoto(photo) {
@@ -16,9 +54,7 @@ class Translator {
     photo.likedBy.push(this);
   }
 }
-module.exports = Translator
-
-
+module.exports = Translator*/
 
 /*get profile() {
     return `
