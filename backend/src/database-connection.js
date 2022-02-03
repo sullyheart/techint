@@ -20,5 +20,5 @@ mongoose.connect(
 )
     .then(() => console.log('connection established')).catch(console.log)
 //the database connection should only create a connection, it shouldnt do anything else.
-
+module.exports = mongoose.connection
 

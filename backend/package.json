@@ -24,9 +24,11 @@
   "author": "Abdulsalam Suliyat <sullieart@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "connect-mongo": "^4.6.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.17.2",
     "http-errors": "~1.6.3",
     "mongoose": "^5.9.29",
     "mongoose-autopopulate": "^0.12.2",
