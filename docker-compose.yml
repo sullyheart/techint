@@ -1,26 +1,5 @@
 version: '3'
 services:
-  app:
-    image: backend
-    build:
-      context: backend
-      dockerfile: Dockerfile
-    environment:
-      # - MONGODB_USERNAME
-      # - MONGODB_PASSWORD
-      # - MONGODB_DATABASE
-      - MONGODB_CONNECTION_STRING=mongodb://mongo/fe108
-    ports:
-      - 3000:3000
-      - 35729:35729
-    volumes:
-      - ./backend/src:/app/src
-  mongo:
-    image: mongo
-    ports:
-      - 27017:27017
-version: '3'
-services:
   frontend:
     image: frontend
     build:
