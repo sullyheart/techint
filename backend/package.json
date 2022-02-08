@@ -24,6 +24,8 @@
   "author": "Abdulsalam Suliyat <sullieart@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.25.0",
+    "cloudmersive-image-api-client": "^1.3.5",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -33,7 +35,11 @@
     "mongoose": "^5.9.29",
     "mongoose-autopopulate": "^0.12.2",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.1.0",
+    "pug": "2.0.0-beta11",
+    "socket.io": "^4.4.1"
   },
   "devDependencies": {
     "connect-livereload": "^0.6.1",

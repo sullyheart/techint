@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Techint' });
+router.get('/session', (req, res,) => {
+  res.send(req.session) //this returns your session if there is any
 });
 
 module.exports = router;

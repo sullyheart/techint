@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const clientSchema = new mongoose.Schema({
   name: {
@@ -38,20 +39,7 @@ class Client {
 
 clientSchema.loadClass(Client)
 clientSchema.plugin(autopopulate)
-
+Client.plugin(passportLocalMongoose);//adds a username and a password and a couple of other things to your schema
+clientnameField: 'email',
+  //I am trying to say username is my email, login with email
 module.exports = mongoose.model('Client', clientSchema)
-
-
-
-/*class Client {
-  constructor(name, age) {
-    this.age = age;
-    this.name = name;
-    this.bio = "";
-    this.comment = [];
-    this.photos = [];
-    
-  }
-}
-
-module.exports = Client*/

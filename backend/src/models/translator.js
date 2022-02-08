@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const translatorSchema = new mongoose.Schema({
   name: {
@@ -31,43 +32,8 @@ class Translator {
 
 translatorSchema.loadClass(Translator)
 translatorSchema.plugin(autopopulate)
-
+Translator.plugin(passportLocalMongoose);//adds a username and a password and a couple of other things to your schema
+translatornameField: 'email',
+  //I am trying to say username is my email, login with email
 module.exports = mongoose.model('Translator', translatorSchema)
 
-
-
-/*class Translator {
-  constructor(name, email) {
-    this.name = name;
-    this.email = email;
-    this.bio = "";
-    this.comment = [];
-    this.photos = [];
-  }
-  greet() {
-    console.log();
-  }
-  addPhoto(photo) {
-    this.photos.push(photo);
-  }
-  likePhoto(photo) {
-    photo.likedBy.push(this);
-  }
-}
-module.exports = Translator*/
-
-/*get profile() {
-    return `
-# ${this.name} (${this.email})
- BIO: ${this.bio}
-
- ## ${'Photos'} (${this.photos.length})
-  
-  ${this.photos
-    .map(photo => {
-      return `### ${photo.filename}
-      ${photo.likedBy.map(person => person.name).join(',') || 'no likes yet!'}
-      `
-    })
-}
-  }*/
