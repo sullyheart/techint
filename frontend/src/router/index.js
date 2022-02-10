@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import UserList from '../views/user-list.vue'
+import Profile from '../views/profile.vue'
 import Login from '../views/login.vue'
 import Register from '../views/register.vue'
 
@@ -12,9 +12,9 @@ export default function init(store) {
     base: process.env.BASE_URL,
     routes: [
       {
-        path: '/',
-        name: 'UserList',
-        component: UserList
+        path: '/profile',
+        name: 'profile',
+        component: Profile,
       },
       {
         path: '/users/:id',
@@ -22,7 +22,7 @@ export default function init(store) {
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/user-detail.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/user-detail.vue'),
       },
       {
         path: '/register',
@@ -31,7 +31,7 @@ export default function init(store) {
         beforeEnter(to, from, next) {
           if (store.state.user) return next('/profile')
           return next()
-        }
+        },
       },
       {
         path: '/login',
@@ -40,7 +40,7 @@ export default function init(store) {
         beforeEnter(to, from, next) {
           if (store.state.user) return next('/profile')
           return next()
-        }
+        },
       },
       {
         path: '/profile',
@@ -49,8 +49,8 @@ export default function init(store) {
         beforeEnter(to, from, next) {
           if (!store.state.user) return next('/login')
           return next()
-        }
-      }
-    ]
+        },
+      },
+    ],
   })
 }
