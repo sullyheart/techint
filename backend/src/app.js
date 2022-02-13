@@ -4,17 +4,25 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo')
 const passport = require('passport')
 
+const Client = require('./models/client')
+const Translator = require('./models/translator')
+
+const mongoose = require('mongoose')
+
 const mongooseConnection = require('./database-connection')
-//const clientPromise = Promise.resolve(mongooseConnection.getClient())
+
+const clientPromise = mongoose.connection.asPromise().then(connection => connection.getClient())
+
 const socketService = require('./socket-service')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
-const photosRouter = require('./routes/accounts')
-const { stringify } = require('querystring')
+const photosRouter = require('./routes/photos')
+const accountRouter = require('./routes/account')
+//const { stringify } = require('querystring')
 
 const app = express()
 
@@ -41,7 +49,7 @@ app.use(cookieParser())
 app.use(
   session({
   secret: ['thisisasupersecuresecretsecret', 'thisisanothersupersecuresecretsecret'],//first is for signing an the 2nd is for validating the signature
-    store: new MongoStore({ mongooseConnection, stringify: false }),
+    store: MongoStore.create({ clientPromise, stringify: false }),
     cookie: {
       maxAge: 30 * 24 * 60 * 60 * 1000,//session expires in 30 days
       path: '/api', //allows to keep it to backend;make sure that cookies are only available for api requests
@@ -52,17 +60,16 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-const Client = require('./models/client')
 passport.use(Client.createStrategy())
-passport.serializeClient(Client.serializeClient())
-passport.deserializeClient(Client.deserializeClient())
+
+passport.serializeUser(Client.serializeUser())
+passport.deserializeUser(Client.deserializeUser())
 
 
 
-constTranslator = require('./models/translator')
 passport.use(Translator.createStrategy())
-passport.serializeTranslator(Translator.serializeTranslator())
-passport.deserializeTranslator(Translator.deserializeTranslator())
+passport.serializeUser(Translator.serializeUser())
+passport.deserializeUser(Translator.deserializeUser())
 
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -95,3 +102,4 @@ app.use((err, req, res,next) => {
 
 
 module.exports = app
+// module.exports = mongoose.connection

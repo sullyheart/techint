@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 #{client.name} (#{client.age})
+  p Bio: #{client.bio}
+  h2 Photos (#{client.photos.length})
+
+  each photo in client.photos
+    h3 #{photo.filename}
+    if photo.likedBy.length == 0
+      p no likes yet!
+    else
+      p #{photo.likedBy.map(client => client.name).join(', ')}

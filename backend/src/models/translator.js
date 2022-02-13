@@ -32,8 +32,9 @@ class Translator {
 
 translatorSchema.loadClass(Translator)
 translatorSchema.plugin(autopopulate)
-Translator.plugin(passportLocalMongoose);//adds a username and a password and a couple of other things to your schema
-translatornameField: 'email',
+translatorSchema.plugin(passportLocalMongoose, {
+  translatornameField: 'email',
+})  //adds a username and a password and a couple of other things to your schema
   //I am trying to say username is my email, login with email
 module.exports = mongoose.model('Translator', translatorSchema)
 

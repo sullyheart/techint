@@ -39,7 +39,7 @@ class Client {
 
 clientSchema.loadClass(Client)
 clientSchema.plugin(autopopulate)
-Client.plugin(passportLocalMongoose);//adds a username and a password and a couple of other things to your schema
+clientSchema.plugin(passportLocalMongoose);//adds a username and a password and a couple of other things to your schema
 clientnameField: 'email',
   //I am trying to say username is my email, login with email
 module.exports = mongoose.model('Client', clientSchema)
