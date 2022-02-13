@@ -1,4 +1,4 @@
 <template lang="pug">
   .about
-    h1This is an about page</h1>
+    h1 This is a client detail page
 </template>

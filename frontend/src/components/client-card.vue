@@ -4,7 +4,7 @@ export default {
   props: ['client'],
   data() {
     return {
-      defaultBio: 'This user has no bios.'
+      defaultBio: 'This client has no bios.'
     }
   }
 }
@@ -17,7 +17,7 @@ export default {
   h2 Photos ({{ client.photos.length }})
 
   .photo(v-for="photo in client.photos")
-  img(:src="`https://picsum.photos${photo.filename}`" :alt="photo.description" :title="photo.description")
+    h3 {{ photo.filename }}
     p(v-if="!photo.likedBy.length")
       | no likes yet!
     p(v-else)

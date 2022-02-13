@@ -16,11 +16,10 @@ export default {
 <template lang="pug">
   #app
    #nav
-      router-link (to="/")Home |&nbsp;
+      router-link (to="/")Client list |&nbsp;
       router-link (to="/about")About
-    router-view
+      router-view /*allows you to render the content of the rout above=>About.vue*/
 </template>
-
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

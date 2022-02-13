@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import ClientList from '../views/client-list.vue'
 import Profile from '../views/profile.vue'
 import Login from '../views/login.vue'
 import Register from '../views/register.vue'
@@ -18,11 +19,11 @@ export default function init(store) {
       },
       {
         path: '/users/:id',
-        name: 'UserDetail',
+        name: 'ClientDetail',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/user-detail.vue'),
+        component: () => import(/* webpackChunkName: "about" */ '../views/client-detail.vue'),
       },
       {
         path: '/register',
