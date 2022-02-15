@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
   }
 
 
- res.send(await User.find(query))
+ res.send(await Client.find(query))
 })
 
 /* POST create a user */

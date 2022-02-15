@@ -24,7 +24,7 @@ const socket = io()
 //   })
 // }, 3000)
 
-const mutations = {
+export const mutations = {
   INCREMENT_COUNT: 'increment count',
   SET_USER: 'set user',
   SET_LIVE_STREAM: 'set live stream',
@@ -32,7 +32,7 @@ const mutations = {
   ADD_MESSAGE_TO_LIVE_STREAM: 'add message to live stream',
 }
 
-const store = new Vuex.Store({
+export const store = new Vuex.Store({
   state: {
     count: 0,
     user: null,
@@ -86,7 +86,7 @@ const store = new Vuex.Store({
     },
     async logout({ commit }) {
       await axios.delete('/api/account/session')
-      commit(mutations.SET_CLIENT, null)
+      commit(mutations.SET_USER, null)
     },
     async goLive({ state, commit }) {
       socket.emit('go live', state.client._id, status => {

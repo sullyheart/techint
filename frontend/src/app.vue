@@ -12,14 +12,16 @@ export default {
 }
 }
  </script>
-
 <template lang="pug">
   #app
-   #nav
-      router-link (to="/")Client list |&nbsp;
-      router-link (to="/about")About
-      router-view /*allows you to render the content of the rout above=>About.vue*/
+    #nav
+      router-link(to="/profile") Profile
+      router-link(to="/login") Login
+      router-link(to="/register") Register
+      a(@click="doLogout" href="#") Logout
+    router-view
 </template>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

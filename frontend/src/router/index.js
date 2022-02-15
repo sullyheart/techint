@@ -4,6 +4,7 @@ import ClientList from '../views/client-list.vue'
 import Profile from '../views/profile.vue'
 import Login from '../views/login.vue'
 import Register from '../views/register.vue'
+import { mutations } from '../store'
 
 Vue.use(VueRouter)
 
@@ -13,8 +14,8 @@ export default function init(store) {
     base: process.env.BASE_URL,
     routes: [
       {
-        path: '/profile',
-        name: 'profile',
+        path: '/',
+        name: 'Profile',
         component: Profile,
       },
       {
@@ -39,14 +40,25 @@ export default function init(store) {
         name: 'login',
         component: Login,
         beforeEnter(to, from, next) {
+          console.log({ t: store.state});
           if (store.state.user) return next('/profile')
           return next()
         },
       },
+      // {
+      //   path: '/logout',
+      //   name: 'logout',
+      //   beforeEnter(to, from, next) {
+      //     console.log({ t: store.state, mutations });
+      //     commit(mutations.SET_USER, null)
+      //     if (store.state.user) return next('/profile')
+      //     return next()
+      //   },
+      // },
       {
         path: '/profile',
         name: 'profile',
-        component: UserList,
+        component: Profile,
         beforeEnter(to, from, next) {
           if (!store.state.user) return next('/login')
           return next()
