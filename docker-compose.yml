@@ -18,12 +18,12 @@ services:
     image: backend
     build:
       context: backend
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
     environment:
       # - MONGODB_USERNAME
-      # - MONGODB_PASSWORD
-      # - MONGODB_DATABASE
-      - MONGODB_CONNECTION_STRING=mongodb://mongo/fe108
+      #- MONGODB_PASSWORD
+     #- MONGODB_DATABASE
+       - MONGODB_CONNECTION_STRING=mongodb://mongo/suliyat
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.backend.rule=(Host(`techint.localhost`) && (PathPrefix(`/api`) || PathPrefix(`/socket`)))"

@@ -5,11 +5,10 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const translatorSchema = new mongoose.Schema({
   name: {
     type: String,
-    unique: true,
     required: true,
   },
-  age: {
-    type: Number,
+  email: {
+    type: String,
     required: true,
   },
   bio: String,
@@ -33,7 +32,7 @@ class Translator {
 translatorSchema.loadClass(Translator)
 translatorSchema.plugin(autopopulate)
 translatorSchema.plugin(passportLocalMongoose, {
-  translatornameField: 'email',
+  usernameField: 'email',
 })  //adds a username and a password and a couple of other things to your schema
   //I am trying to say username is my email, login with email
 module.exports = mongoose.model('Translator', translatorSchema)
