@@ -6,6 +6,7 @@ const logger = require('morgan')
 const session = require('express-session');
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
+const cors = require('cors')
 
 const Client = require('./models/client')
 const Translator = require('./models/translator')
@@ -26,6 +27,12 @@ const accountRouter = require('./routes/account')
 
 const app = express()
 
+app.use(
+  cors({
+    origin: true,  //||http frontend server
+    credentials: true, // we wont be receiving cookies if we dont have this
+}))
+
 if (app.get('env') == 'development') {
   /* eslint-disable-next-line */
   app.use(require('connect-livereload')())
@@ -34,6 +41,8 @@ if (app.get('env') == 'development') {
     .createServer({ extraExts: ['pug'] })
     .watch([`${__dirname}/public`, `${__dirname}/views`])
 }
+
+app.set('trust proxy', 1)
 
 app.set('io', socketService)//making sure my socket service is available to any file that has access to app
 
@@ -53,6 +62,8 @@ app.use(
     cookie: {
       maxAge: 30 * 24 * 60 * 60 * 1000,//session expires in 30 days
       path: '/api', //allows to keep it to backend;make sure that cookies are only available for api requests
+      sameSite: 'none',
+      secure: true, // only runs on https not http
     },
     })
 );
