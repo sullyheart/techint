@@ -12,10 +12,10 @@ export default {
     }
   },
   async created() {
-    this.user = await this.fetchClient(this.$route.params.id)
+    this.user = await this.fetchUser(this.$route.params.id)
   },
   methods: {
-    ...mapActions(['fetchClient'])
+    ...mapActions(['fetchUser'])
   }
 }
 </script>

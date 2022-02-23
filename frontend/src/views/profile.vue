@@ -31,7 +31,7 @@ export default {
 
 <template lang="pug">
   .home
-    //- h1 Techint {{ client?.name }}
+    h1 Techint {{ client.name }}
     p The time is: {{ time }}
     h2 Users
     div(v-for="client in users")

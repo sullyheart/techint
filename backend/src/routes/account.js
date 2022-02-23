@@ -23,16 +23,16 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
-  const { name, age, email, password } = req.body
+// router.post('/', async (req, res, next) => {
+//   const { name, age, email, password } = req.body
 
-  try {
-    const translator = await Translator.register({ name, age, email }, password)
-    res.send(translator)
-  } catch (e) {
-    next(e)
-  }
-})
+//   try {
+//     const translator = await Translator.register({ name, age, email }, password)
+//     res.send(translator)
+//   } catch (e) {
+//     next(e)
+//   }
+// })
 
 
 router.post('/session', passport.authenticate('local', { failWithError: true }), async (req, res) => {

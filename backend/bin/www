@@ -22,7 +22,20 @@ app.set('port', port)
  */
 
 const server = http.createServer(app)
-app.get('io').attach(server); //this make sure I dont need a diferent server than my backend
+//this make sure I dont need a diferent server than my backend
+
+app.get('io').attach(server, {
+
+  cors: {
+
+    origin: true,
+    credentials: true,
+
+  },
+
+})
+
+
 
 
 /**

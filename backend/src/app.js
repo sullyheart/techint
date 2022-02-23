@@ -6,18 +6,21 @@ const logger = require('morgan')
 const session = require('express-session');
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
+const mongoose = require('mongoose')
 const cors = require('cors')
+
 
 const Client = require('./models/client')
 const Translator = require('./models/translator')
 
-const mongoose = require('mongoose')
-
 const mongooseConnection = require('./database-connection')
-
-const clientPromise = mongoose.connection.asPromise().then(connection => connection.getClient())
-
 const socketService = require('./socket-service')
+
+const clientPromise = mongoose.connection
+  .asPromise()
+  .then(connection => connection.getClient())
+
+
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
@@ -26,6 +29,7 @@ const accountRouter = require('./routes/account')
 //const { stringify } = require('querystring')
 
 const app = express()
+
 
 app.use(
   cors({
@@ -62,8 +66,8 @@ app.use(
     cookie: {
       maxAge: 30 * 24 * 60 * 60 * 1000,//session expires in 30 days
       path: '/api', //allows to keep it to backend;make sure that cookies are only available for api requests
-      sameSite: 'none',
-      secure: true, // only runs on https not http
+      sameSite: "none",
+      secure: false, // only runs on https not http
     },
     })
 );
@@ -76,11 +80,9 @@ passport.use(Client.createStrategy())
 passport.serializeUser(Client.serializeUser())
 passport.deserializeUser(Client.deserializeUser())
 
-
-
-passport.use(Translator.createStrategy())
-passport.serializeUser(Translator.serializeUser())
-passport.deserializeUser(Translator.deserializeUser())
+// passport.use(Translator.createStrategy())
+// passport.serializeUser(Translator.serializeUser())
+// passport.deserializeUser(Translator.deserializeUser())
 
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -109,7 +111,13 @@ app.use((err, req, res,next) => {
   // render the error page
   res.status(err.status || 500)
   res.render('error')
-})
+
+  res.send({
+    status: err.status,
+    message: err.message,
+    stack: req.app.get("env") == "development" ? err.stack : "",
+  });
+});
 
 
 module.exports = app

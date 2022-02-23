@@ -109,15 +109,15 @@ res.status(500).json({error})
   }
 
 })
-router.post("/:clientId/translatorId", async (req, res) => {
+router.post("/:clientId", async (req, res) => {
   const client = await Client(req.params.clientId)
-  const translator = await Translator(req.params.translatorId)
+  //const translator = await Translator(req.params.translatorId)
   const photo = await Photo.findById(req.body.photoId)
 })
 
-  router.get('/clientId/translatorId', async (req, res) => {
+  router.get('/clientId', async (req, res) => {
   const client = await Client.findById(req.params.clientId)
-const translator = await Translator.findById(req.params.translatorId)
+//const translator = await Translator.findById(req.params.translatorId)
  
     if (client) res.send(client)
   else res.sendStatus(404)
@@ -128,10 +128,10 @@ router.get('/:clientId/json', async (req, res) => {
   res.send(client)
 })
 
-router.get('/:translatorId/json', async (req, res) => {
-  const translator = await Translator.findById(req.params.clientId)
-  res.send(translator)
-})
+// router.get('/:translatorId/json', async (req, res) => {
+//   const translator = await Translator.findById(req.params.clientId)
+//   res.send(translator)
+// })
 
 
 module.exports = router;

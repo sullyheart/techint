@@ -27,7 +27,7 @@ const socket = io(process.env.VUE_APP_BASE_URL)
 //   })
 // }, 3000)
 
-export const mutations = {
+ const mutations = {
   INCREMENT_COUNT: 'increment count',
   SET_USER: 'set user',
   SET_LIVE_STREAM: 'set live stream',

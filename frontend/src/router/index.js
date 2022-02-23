@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ClientList from '../views/client-list.vue'
+//import ClientList from '../views/client-list.vue'
 import Profile from '../views/profile.vue'
 import Login from '../views/login.vue'
 import Register from '../views/register.vue'
-import { mutations } from '../store'
+//import { mutations } from '../store'
 
 Vue.use(VueRouter)
 
@@ -40,10 +40,9 @@ export default function init(store) {
         name: 'login',
         component: Login,
         beforeEnter(to, from, next) {
-          console.log({ t: store.state});
           if (store.state.user) return next('/profile')
           return next()
-        },
+        }
       },
       // {
       //   path: '/logout',

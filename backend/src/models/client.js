@@ -19,13 +19,13 @@ const clientSchema = new mongoose.Schema({
       autopopulate: true,
     },
   ],
-  comment: [
-    {
-       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment',
-      autopopulate: true,
-    },
-  ],
+  // comment: [
+  //   {
+  //      type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'Comment',
+  //     autopopulate: true,
+  //   },
+  // ],
 })
 
 class Client {
