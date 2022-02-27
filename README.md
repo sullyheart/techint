@@ -40,7 +40,7 @@ git clone
   ```
    
    #### Vue app
-9. Install dependencies inside the `frontend` directory
+ Install dependencies inside the `frontend` directory
   ```bash
   npm install
   ```
@@ -48,3 +48,11 @@ git clone
    ```bash
    npm run serve
    ```
+   # Cloud Run
+   #### backend
+   To run the backend via googlecloud run
+   [backend](https://backend-6cc2qbequq-ew.a.run.app)
+   
+   #### frontend
+   To run the frontend via googlecloud run
+   [frontend](https://frontend-6cc2qbequq-ew.a.run.app)
