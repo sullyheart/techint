@@ -14,6 +14,7 @@ export default {
  </script>
 <template lang="pug">
   #app
+   h3 Techint Translation Services
     #nav
       router-link(to="/profile") Profile
       router-link(to="/login") Login
@@ -32,15 +33,20 @@ export default {
 }
 
 #nav {
-  padding: 30px;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
+  margin-left: 60px;
 
   a {
     font-weight: bold;
     color: #2c3e50;
+    text-decoration: none;
 
     &.router-link-exact-active {
       color: #42b983;
     }
   }
+  
 }
 </style>
