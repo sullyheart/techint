@@ -3,7 +3,7 @@ import Counter from '@/components/counter.vue'
 import { mapActions, mapState } from 'vuex'
 
 export default {
-  name: 'Profile',
+  name: 'profile',
   components: { Counter },
   data() {
     return {
@@ -31,10 +31,11 @@ export default {
 
 <template lang="pug">
   .home
-    h1 Techint {{ client.name }}
     p The time is: {{ time }}
     h2 Users
     div(v-for="client in users")
+      h1 Techint {{ client.name }}
+
       router-link(:to="`/users/${client._id}`") {{ client.name }}
     div(v-if="liveStreams.length")
       h2 Live streams

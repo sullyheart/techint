@@ -1,3 +1,4 @@
+//entry point to vuex and where we combine all our modules 
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
@@ -7,6 +8,7 @@ import io from 'socket.io-client'
 axios.defaults.baseURL = process.env.VUE_APP_BASE_URL
 axios.defaults.withCredentials = true //enable cookies,cookies are ste by the backend and they are on different domain
 
+// Load Vuex
 Vue.use(Vuex)
 
 const socket = io(process.env.VUE_APP_BASE_URL)
@@ -35,6 +37,7 @@ const socket = io(process.env.VUE_APP_BASE_URL)
   ADD_MESSAGE_TO_LIVE_STREAM: 'add message to live stream',
 }
 
+// Create Store
 export const store = new Vuex.Store({
   state: {
     count: 0,
